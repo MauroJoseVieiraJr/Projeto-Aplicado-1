@@ -1,6 +1,6 @@
-package main;
+package model;
 
-public class Candidato_X_Pesquisa {
+public class CandidatoXPesquisa {
 	private int id;
 	private Candidato candidato;
 	private Pesquisa pesquisa;
@@ -13,7 +13,7 @@ public class Candidato_X_Pesquisa {
 	 * @param pesquisa - Pesquisa que será analisada.
 	 * @param votos - Quantia de votos do candidato na pesquisa.
 	 */
-	public Candidato_X_Pesquisa(int id, Candidato candidato, Pesquisa pesquisa, int votos) {
+	public CandidatoXPesquisa(int id, Candidato candidato, Pesquisa pesquisa, int votos) {
 		super();
 		this.id = id;
 		this.candidato = candidato;
@@ -24,10 +24,10 @@ public class Candidato_X_Pesquisa {
 	@Override
 	public String toString() {
 		String s = "Candidato X Pesquisa. ID: " + id + 
-				"\n Candidato: " + candidato.getNome() + ", Partido: " + candidato.getPartido() +
-				".\n Pesquisa: " + pesquisa .getId()+ ", Instituto: " + pesquisa.getInstituto() +
+				"\n-Candidato: " + candidato.getNome() + ", Partido: " + candidato.getPartido() +
+				".\n-Pesquisa: " + pesquisa .getId()+ ", Instituto: " + pesquisa.getInstituto() +
 				", Data da pesquisa: " + pesquisa.getData() + 
-				".\n  Total de votos: " + votos;
+				".\n-->Total de votos: " + votos;
 		return s;
 	}
 	

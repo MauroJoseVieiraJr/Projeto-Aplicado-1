@@ -1,4 +1,4 @@
-package main;
+package model;
 
 public class Candidato {
 	private int id;
