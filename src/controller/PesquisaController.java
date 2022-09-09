@@ -1,5 +1,6 @@
 package controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import dao.PesquisaDao;
@@ -27,18 +28,28 @@ public class PesquisaController implements Crud<Pesquisa> {
 	}
 
 	@Override
-	public List<Pesquisa> Read() {
+	public List<Pesquisa> Read() throws SQLException {
 		return PesquisaDao.getInstance().Read();
 	}
 
 	@Override
 	public void Update(Pesquisa t) throws Exception {
+		if (t.getLocal().length() < 1 || t.getLocal().length() > 50)
+			throw new Exception(ErrorMessages.LOCATION_ERROR);
+		
+		if (t.getInstituto().length() < 1 || t.getInstituto().length() > 50)
+			throw new Exception(ErrorMessages.INSTITUTE_ERROR);
+		
+		if (t.getFormato().length() < 1 || t.getFormato().length() > 10)
+			throw new Exception(ErrorMessages.FORMAT_ERROR);
+		
 		PesquisaDao.getInstance().Update(t);
+		System.out.println("Pesquisa " + t.getId() + " atualizada.");
 	}
 
 	@Override
-	public void Delete(Pesquisa t) throws Exception {
-		PesquisaDao.getInstance().Delete(t);
+	public void Delete(int id) throws Exception {
+		PesquisaDao.getInstance().Delete(id);
 	}
 
 }

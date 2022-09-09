@@ -27,13 +27,13 @@ public class Candidato {
 					fichaLimpa + ".";
 		return s;
 	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public int getId() {
 		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getNome() {
@@ -41,7 +41,8 @@ public class Candidato {
 	}
 
 	public void setNome(String nome) {
-		this.nome = nome;
+		if (nome.length() >= 1 && nome.length() <= 50)
+			this.nome = nome;		
 	}
 
 	public String getPartido() {
@@ -49,7 +50,8 @@ public class Candidato {
 	}
 
 	public void setPartido(String partido) {
-		this.partido = partido;
+		if (partido.length() > 1 && partido.length() <= 50)
+			this.partido = partido;
 	}
 
 	public boolean isFichaLimpa() {

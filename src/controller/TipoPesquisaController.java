@@ -1,5 +1,6 @@
 package controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import dao.TipoPesquisaDao;
@@ -17,21 +18,25 @@ public class TipoPesquisaController implements Crud<TipoPesquisa> {
 			throw new Exception(ErrorMessages.DESCRIPTION_ERROR);
 		
 		TipoPesquisaDao.getInstance().Create(t);
-		System.out.println("Tipo de Pesquisa " + t.getId() + " criada com sucesso.");
+		System.out.println("Tipo de Pesquisa " + t.getId() + " criado com sucesso.");
 	}
 
 	@Override
-	public List<TipoPesquisa> Read() {
+	public List<TipoPesquisa> Read() throws SQLException {
 		return TipoPesquisaDao.getInstance().Read();
 	}
 
 	@Override
 	public void Update(TipoPesquisa t) throws Exception {
+		if (t.getDescricao().length() < 1 || t.getDescricao().length() > 50)
+			throw new Exception(ErrorMessages.DESCRIPTION_ERROR);
+		
 		TipoPesquisaDao.getInstance().Update(t);
+		System.out.println("Tipo de Pesquisa " + t.getId() + " atualizado.");
 	}
 
 	@Override
-	public void Delete(TipoPesquisa t) throws Exception {
-		TipoPesquisaDao.getInstance().Delete(t);
+	public void Delete(int id) throws Exception {
+		TipoPesquisaDao.getInstance().Delete(id);
 	}
 }

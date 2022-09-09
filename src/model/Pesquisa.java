@@ -40,12 +40,12 @@ public class Pesquisa {
 		return s;
 	}
 	
-	public int getId() {
-		return id;
-	}
-	
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public int getId() {
+		return id;
 	}
 	
 	public String getInstituto() {
@@ -53,7 +53,8 @@ public class Pesquisa {
 	}
 	
 	public void setInstituto(String instituto) {
-		this.instituto = instituto;
+		if (instituto.length() >= 1 && instituto.length() <= 50)
+			this.instituto = instituto;
 	}
 	
 	public String getData() {
@@ -69,7 +70,8 @@ public class Pesquisa {
 	}
 	
 	public void setLocal(String local) {
-		this.local = local;
+		if (local.length() >= 1 && local.length() <= 50)
+			this.local = local;
 	}
 	
 	public int getMediaIdade() {
@@ -93,8 +95,7 @@ public class Pesquisa {
 	}
 	
 	public void setFormato(String formato) {
-		this.formato = formato;
+		if (formato.length() >= 1 && formato.length() <= 10)
+			this.formato = formato;
 	}
-	
-	
 }

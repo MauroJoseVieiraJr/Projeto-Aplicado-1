@@ -1,15 +1,21 @@
 package dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import interfaces.Crud;
 import model.TipoPesquisa;
+import util.ConnectionUtil;
 
 public class TipoPesquisaDao implements Crud<TipoPesquisa> {
 	
 	private static TipoPesquisaDao instance;
-	private List<TipoPesquisa> tipoPesquisaList = new ArrayList<>();
+	private Connection con = ConnectionUtil.getConnection();
 	
 	public static TipoPesquisaDao getInstance() {
 		if (instance == null)
@@ -18,23 +24,54 @@ public class TipoPesquisaDao implements Crud<TipoPesquisa> {
 	}
 
 	@Override
-	public void Create(TipoPesquisa t) throws Exception {
-		tipoPesquisaList.add(t);
+	public void Create(TipoPesquisa t) throws SQLException {
+		String descricao = t.getDescricao();
+		
+		String values = "values ('" + descricao + "')";
+		String sql = "insert into tipopesquisa (descricao) " + values;
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.execute();
 	}
 
 	@Override
-	public List<TipoPesquisa> Read() {
-		return tipoPesquisaList;
+	public List<TipoPesquisa> Read() throws SQLException {
+		List<TipoPesquisa> list = new ArrayList<>();
+		
+		String sql = "select * from tipopesquisa";
+		Statement s = con.createStatement();
+		ResultSet rs = s.executeQuery(sql);
+		
+		while(rs.next()) {
+			int id = rs.getInt("id");
+			String descricao = rs.getString("descricao");
+			
+			TipoPesquisa tp = new TipoPesquisa(id, descricao);
+			list.add(tp);
+		}
+		
+		return list;
 	}
 
 	@Override
-	public void Update(TipoPesquisa t) throws Exception {
-		tipoPesquisaList.set(t.getId(), t);
+	public void Update(TipoPesquisa t) throws SQLException {
+		int id = t.getId();
+		String descricao = t.getDescricao();
+		
+		String values = "descricao = '" + descricao + "'";
+		String where = " where id = " + id;
+		String sql = "update tipopesquisa set " + values + where;
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.executeUpdate();
 	}
 
 	@Override
-	public void Delete(TipoPesquisa t) throws Exception {
-		tipoPesquisaList.remove(t.getId());
+	public void Delete(int id) throws SQLException {
+		String where = "where id = " + id;
+		String sql = "delete from tipopesquisa " + where;
+				
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.executeUpdate();
 	}
-
 }

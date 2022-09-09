@@ -1,5 +1,6 @@
 package controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import dao.CandidatoDao;
@@ -24,18 +25,28 @@ public class CandidatoController implements Crud<Candidato> {
 	}
 
 	@Override
-	public List<Candidato> Read() {
+	public List<Candidato> Read() throws SQLException {
 		return CandidatoDao.getInstance().Read();
 	}
 
 	@Override
 	public void Update(Candidato t) throws Exception {
+		if (t.getNome().length() < 1 || t.getNome().length() > 50)
+			throw new Exception(ErrorMessages.NAME_ERROR);
+		
+		if (t.getPartido().length() < 1 || t.getPartido().length() > 50)
+			throw new Exception(ErrorMessages.PARTY_ERROR);
+		
 		CandidatoDao.getInstance().Update(t);
+		System.out.println("Candidato " + t.getId() + ", " + t.getNome() + " atualizado.");
 	}
 
 	@Override
-	public void Delete(Candidato t) throws Exception {
-		CandidatoDao.getInstance().Delete(t);
+	public void Delete(int id) throws Exception {
+		CandidatoDao.getInstance().Delete(id);
 	}
-
+	
+	public Candidato Find(int id) throws Exception {
+		return CandidatoDao.getInstance().Find(id);
+	}
 }

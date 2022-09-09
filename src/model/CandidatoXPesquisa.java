@@ -31,12 +31,12 @@ public class CandidatoXPesquisa {
 		return s;
 	}
 	
-	public int getId() {
-		return id;
-	}
-	
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public int getId() {
+		return id;
 	}
 	
 	public Candidato getCandidato() {

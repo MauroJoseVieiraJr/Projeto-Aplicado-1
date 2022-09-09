@@ -21,18 +21,22 @@ public class CandidatoXPesquisaController implements Crud<CandidatoXPesquisa> {
 	}
 
 	@Override
-	public List<CandidatoXPesquisa> Read() {
+	public List<CandidatoXPesquisa> Read() throws Exception {
 		return CandidatoXPesquisaDao.getInstance().Read();
 	}
 
 	@Override
 	public void Update(CandidatoXPesquisa t) throws Exception {
+		if (t.getVotos() < 0)
+			throw new Exception(ErrorMessages.VOTE_ERROR);
+		
 		CandidatoXPesquisaDao.getInstance().Update(t);
+		System.out.println("Candidato X Pesquisa " + t.getId() + " atualizado.");
 	}
 
 	@Override
-	public void Delete(CandidatoXPesquisa t) throws Exception {
-		CandidatoXPesquisaDao.getInstance().Delete(t);
+	public void Delete(int id) throws Exception {
+		CandidatoXPesquisaDao.getInstance().Delete(id);
 	}
 
 }
