@@ -39,4 +39,8 @@ public class TipoPesquisaController implements Crud<TipoPesquisa> {
 	public void Delete(int id) throws Exception {
 		TipoPesquisaDao.getInstance().Delete(id);
 	}
+	
+	public TipoPesquisa Find(int id) throws Exception {
+		return TipoPesquisaDao.getInstance().Find(id);
+	}
 }

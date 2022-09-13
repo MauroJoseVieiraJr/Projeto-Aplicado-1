@@ -52,4 +52,7 @@ public class PesquisaController implements Crud<Pesquisa> {
 		PesquisaDao.getInstance().Delete(id);
 	}
 
+	public Pesquisa Find(int id) throws Exception {
+		return PesquisaDao.getInstance().Find(id);
+	}
 }

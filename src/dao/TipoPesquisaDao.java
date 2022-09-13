@@ -74,4 +74,24 @@ public class TipoPesquisaDao implements Crud<TipoPesquisa> {
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.executeUpdate();
 	}
+	
+	public TipoPesquisa Find(int id) throws Exception {
+		TipoPesquisa tp = new TipoPesquisa(0, null);
+		
+		String where = " where id = " + id;
+		String sql = "select * from tipopesquisa" + where;
+		
+		Statement s = con.createStatement();
+		ResultSet rs = s.executeQuery(sql);
+		
+		if(rs.next()) {
+			int i = rs.getInt("id");
+			String desc = rs.getString("descricao");
+			
+			tp = new TipoPesquisa(i, desc);
+			return tp;
+		} else {
+			return null;
+		}
+	}
 }
