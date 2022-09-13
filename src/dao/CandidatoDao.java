@@ -2,6 +2,8 @@ package dao;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import interfaces.Crud;
@@ -49,6 +51,8 @@ public class CandidatoDao implements Crud<Candidato> {
 			Candidato c = new Candidato(id, nome, partido, fichaLimpa);
 			list.add(c);
 		}
+		
+		Collections.sort(list, (a, b) -> a.getId() < b.getId() ? -1 : 1);
 		
 		return list;
 	}

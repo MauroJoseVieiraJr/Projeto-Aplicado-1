@@ -24,7 +24,6 @@ public class PesquisaController implements Crud<Pesquisa> {
 			throw new Exception(ErrorMessages.FORMAT_ERROR);
 		
 		PesquisaDao.getInstance().Create(t);
-		System.out.println("Pesquisa " + t.getId() + " criada com sucesso.");
 	}
 
 	@Override
@@ -44,7 +43,6 @@ public class PesquisaController implements Crud<Pesquisa> {
 			throw new Exception(ErrorMessages.FORMAT_ERROR);
 		
 		PesquisaDao.getInstance().Update(t);
-		System.out.println("Pesquisa " + t.getId() + " atualizada.");
 	}
 
 	@Override

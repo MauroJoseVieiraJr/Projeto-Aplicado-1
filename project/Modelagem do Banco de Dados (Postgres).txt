@@ -1,0 +1,130 @@
+create table Candidato(id           serial      primary key,
+                       nome         varchar(50) not null,
+                       partido      varchar(50),
+                       ficha_limpa  boolean
+                      );
+
+create table TipoPesquisa(id            serial primary key,
+                          descricao     varchar(50)
+                         );
+
+create table Pesquisa(id                serial primary key,
+                      instituto         varchar(50) not null,
+                      data_pesquisa     date,
+                      local_pesquisa    varchar(50),
+                      media_idade       int,
+                      tipo              int,
+                      formato           varchar(10),
+                      foreign key(tipo) references TipoPesquisa
+                     );
+
+create table Candidato_X_Pesquisa(id            serial primary key,
+                                  candidato     int,
+                                  pesquisa      int,
+                                  votos         float not null,
+                                  foreign key(candidato) references Candidato,
+                                  foreign key(pesquisa) references Pesquisa
+                                 );
+----------------------------------------------------------------------------------------------
+insert into Candidato values (default,  'Alberto',   'PQP', true);
+insert into Candidato values (default,  'Bruno',     'PDF', true);
+insert into Candidato values (default,  'Carlos',    'PDF', false);
+insert into Candidato values (default,  'Daniel',    'PQP', true);
+insert into Candidato values (default,  'Eduardo',   'PQP', false);
+insert into Candidato values (default,  'Fabrício',  'PUM', true);
+insert into Candidato values (default,  'Gustavo',   'PQP', false);
+insert into Candidato values (default,  'Hilda',     'PUM', true);
+insert into Candidato values (default,  'Ícaro',     'PQP', true);
+insert into Candidato values (default,  'Josiane',   'PDF', false);
+----------------------------------------------------------------------------------------------
+insert into TipoPesquisa values (default, 'Induzida');
+insert into TipoPesquisa values (default, 'Livre');
+----------------------------------------------------------------------------------------------
+insert into Pesquisa values (default, 'IBGE',     '2020-03-12', 'Florianópolis', 38, 1, 'Telefone');
+insert into Pesquisa values (default, 'Datafolha','2020-04-02', 'Chapecó', 45, 1, 'Presencial');
+insert into Pesquisa values (default, 'IGP',      '2020-03-27', 'Lages', 26, 2, 'Telefone');
+insert into Pesquisa values (default, 'IBGE',     '2020-04-07', 'Florianópolis', 34, 2, 'Presencial');
+insert into Pesquisa values (default, 'IGP',      '2020-03-14', 'Lages', 56, 1, 'Telefone');
+insert into Pesquisa values (default, 'Datafolha','2020-03-30', 'Chapecó', 23, 2, 'Telefone');
+insert into Pesquisa values (default, 'IBGE',     '2020-03-19', 'Florianópolis', 39, 1, 'Presencial');
+----------------------------------------------------------------------------------------------
+insert into Candidato_X_Pesquisa values (default, 1, 1, 100);
+insert into Candidato_X_Pesquisa values (default, 1, 2, 123);
+insert into Candidato_X_Pesquisa values (default, 1, 3, 34);
+insert into Candidato_X_Pesquisa values (default, 1, 4, 57);
+insert into Candidato_X_Pesquisa values (default, 1, 5, 21);
+insert into Candidato_X_Pesquisa values (default, 1, 6, 68);
+insert into Candidato_X_Pesquisa values (default, 1, 7, 97);
+
+insert into Candidato_X_Pesquisa values (default, 2, 1, 111);
+insert into Candidato_X_Pesquisa values (default, 2, 2, 13);
+insert into Candidato_X_Pesquisa values (default, 2, 3, 134);
+insert into Candidato_X_Pesquisa values (default, 2, 4, 72);
+insert into Candidato_X_Pesquisa values (default, 2, 5, 24);
+insert into Candidato_X_Pesquisa values (default, 2, 6, 81);
+insert into Candidato_X_Pesquisa values (default, 2, 7, 27);
+
+insert into Candidato_X_Pesquisa values (default, 3, 1, 47);
+insert into Candidato_X_Pesquisa values (default, 3, 2, 29);
+insert into Candidato_X_Pesquisa values (default, 3, 3, 134);
+insert into Candidato_X_Pesquisa values (default, 3, 4, 71);
+insert into Candidato_X_Pesquisa values (default, 3, 5, 123);
+insert into Candidato_X_Pesquisa values (default, 3, 6, 62);
+insert into Candidato_X_Pesquisa values (default, 3, 7, 59);
+
+insert into Candidato_X_Pesquisa values (default, 4, 1, 72);
+insert into Candidato_X_Pesquisa values (default, 4, 2, 94);
+insert into Candidato_X_Pesquisa values (default, 4, 3, 14);
+insert into Candidato_X_Pesquisa values (default, 4, 4, 132);
+insert into Candidato_X_Pesquisa values (default, 4, 5, 33);
+insert into Candidato_X_Pesquisa values (default, 4, 6, 23);
+insert into Candidato_X_Pesquisa values (default, 4, 7, 99);
+
+insert into Candidato_X_Pesquisa values (default, 5, 1, 22);
+insert into Candidato_X_Pesquisa values (default, 5, 2, 47);
+insert into Candidato_X_Pesquisa values (default, 5, 3, 141);
+insert into Candidato_X_Pesquisa values (default, 5, 4, 12);
+insert into Candidato_X_Pesquisa values (default, 5, 5, 39);
+insert into Candidato_X_Pesquisa values (default, 5, 6, 31);
+insert into Candidato_X_Pesquisa values (default, 5, 7, 19);
+
+insert into Candidato_X_Pesquisa values (default, 6, 1, 25);
+insert into Candidato_X_Pesquisa values (default, 6, 2, 79);
+insert into Candidato_X_Pesquisa values (default, 6, 3, 11);
+insert into Candidato_X_Pesquisa values (default, 6, 4, 124);
+insert into Candidato_X_Pesquisa values (default, 6, 5, 99);
+insert into Candidato_X_Pesquisa values (default, 6, 6, 111);
+insert into Candidato_X_Pesquisa values (default, 6, 7, 90);
+
+insert into Candidato_X_Pesquisa values (default, 7, 1, 57);
+insert into Candidato_X_Pesquisa values (default, 7, 2, 90);
+insert into Candidato_X_Pesquisa values (default, 7, 3, 14);
+insert into Candidato_X_Pesquisa values (default, 7, 4, 24);
+insert into Candidato_X_Pesquisa values (default, 7, 5, 9);
+insert into Candidato_X_Pesquisa values (default, 7, 6, 110);
+insert into Candidato_X_Pesquisa values (default, 7, 7, 8);
+
+insert into Candidato_X_Pesquisa values (default, 8, 1, 76);
+insert into Candidato_X_Pesquisa values (default, 8, 2, 93);
+insert into Candidato_X_Pesquisa values (default, 8, 3, 47);
+insert into Candidato_X_Pesquisa values (default, 8, 4, 45);
+insert into Candidato_X_Pesquisa values (default, 8, 5, 39);
+insert into Candidato_X_Pesquisa values (default, 8, 6, 102);
+insert into Candidato_X_Pesquisa values (default, 8, 7, 81);
+
+insert into Candidato_X_Pesquisa values (default, 9, 1, 62);
+insert into Candidato_X_Pesquisa values (default, 9, 2, 35);
+insert into Candidato_X_Pesquisa values (default, 9, 3, 71);
+insert into Candidato_X_Pesquisa values (default, 9, 4, 51);
+insert into Candidato_X_Pesquisa values (default, 9, 5, 96);
+insert into Candidato_X_Pesquisa values (default, 9, 6, 28);
+insert into Candidato_X_Pesquisa values (default, 9, 7, 17);
+
+insert into Candidato_X_Pesquisa values (default, 10, 1, 29);
+insert into Candidato_X_Pesquisa values (default, 10, 2, 58);
+insert into Candidato_X_Pesquisa values (default, 10, 3, 142);
+insert into Candidato_X_Pesquisa values (default, 10, 4, 103);
+insert into Candidato_X_Pesquisa values (default, 10, 5, 61);
+insert into Candidato_X_Pesquisa values (default, 10, 6, 86);
+insert into Candidato_X_Pesquisa values (default, 10, 7, 75);
+----------------------------------------------------------------------------------------------

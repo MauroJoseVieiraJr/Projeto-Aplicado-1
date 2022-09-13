@@ -21,7 +21,6 @@ public class CandidatoController implements Crud<Candidato> {
 			throw new Exception(ErrorMessages.PARTY_ERROR);
 		
 		CandidatoDao.getInstance().Create(t);
-		System.out.println("Candidato " + t.getId() + ", " + t.getNome() + " criado com sucesso.");
 	}
 
 	@Override
@@ -38,7 +37,6 @@ public class CandidatoController implements Crud<Candidato> {
 			throw new Exception(ErrorMessages.PARTY_ERROR);
 		
 		CandidatoDao.getInstance().Update(t);
-		System.out.println("Candidato " + t.getId() + ", " + t.getNome() + " atualizado.");
 	}
 
 	@Override

@@ -18,9 +18,6 @@ public class ConnectionUtil {
 			e.printStackTrace();
 		}
 		
-		if(con != null)
-			System.out.println("Conectado ao banco de dados " + database);
-		
 		return con;
 	}
 	

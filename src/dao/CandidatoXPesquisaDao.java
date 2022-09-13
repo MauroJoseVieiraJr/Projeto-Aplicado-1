@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import interfaces.Crud;
@@ -59,6 +60,8 @@ public class CandidatoXPesquisaDao implements Crud<CandidatoXPesquisa> {
 			CandidatoXPesquisa c = new CandidatoXPesquisa(id, candidato, pesquisa, votos);
 			list.add(c);
 		}
+		
+		Collections.sort(list, (a, b) -> a.getId() < b.getId() ? -1 : 1);
 		
 		return list;
 	}

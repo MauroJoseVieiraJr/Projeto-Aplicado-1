@@ -17,7 +17,6 @@ public class CandidatoXPesquisaController implements Crud<CandidatoXPesquisa> {
 			throw new Exception(ErrorMessages.VOTE_ERROR);
 		
 		CandidatoXPesquisaDao.getInstance().Create(t);
-		System.out.println("Candidato X Pesquisa " + t.getId() + " criado com sucesso.");
 	}
 
 	@Override
@@ -31,7 +30,6 @@ public class CandidatoXPesquisaController implements Crud<CandidatoXPesquisa> {
 			throw new Exception(ErrorMessages.VOTE_ERROR);
 		
 		CandidatoXPesquisaDao.getInstance().Update(t);
-		System.out.println("Candidato X Pesquisa " + t.getId() + " atualizado.");
 	}
 
 	@Override

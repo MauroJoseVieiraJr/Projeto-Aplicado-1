@@ -18,7 +18,6 @@ public class TipoPesquisaController implements Crud<TipoPesquisa> {
 			throw new Exception(ErrorMessages.DESCRIPTION_ERROR);
 		
 		TipoPesquisaDao.getInstance().Create(t);
-		System.out.println("Tipo de Pesquisa " + t.getId() + " criado com sucesso.");
 	}
 
 	@Override
@@ -32,7 +31,6 @@ public class TipoPesquisaController implements Crud<TipoPesquisa> {
 			throw new Exception(ErrorMessages.DESCRIPTION_ERROR);
 		
 		TipoPesquisaDao.getInstance().Update(t);
-		System.out.println("Tipo de Pesquisa " + t.getId() + " atualizado.");
 	}
 
 	@Override
